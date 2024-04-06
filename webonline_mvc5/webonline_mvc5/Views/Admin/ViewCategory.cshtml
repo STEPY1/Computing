@@ -1,0 +1,101 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<webonline_mvc5.Models.category>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewCategory</title>
+    <link href="~/Content/pagination.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        .card {
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="height: 100px; border: 1px solid solid; text-align: center;">
+                <div style="margin-top: 20px;">
+                    @Html.ActionLink("Create New Category", "Category", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-4">
+                        <div class="card">
+                            <img class="card-img-top" src="@Url.Content(item.cat_image)" alt="Category Image" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.cat_name</h5>
+                                <div class="btn-group" role="group">
+                                    @Html.ActionLink("Edit", "EditCategory", new { id = item.cat_id }, new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.cat_id }, new { @class = "btn btn-danger btn-sm" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-lg-12">
+                    <p>No categories found.</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="pagination">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("ViewCategory", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

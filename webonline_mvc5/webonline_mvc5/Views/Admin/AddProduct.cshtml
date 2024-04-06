@@ -1,0 +1,34 @@
+﻿@model webonline_mvc5.Models.product
+
+@{
+    ViewBag.Title = "Add New Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center" style="color: black; font-weight: bold;">Add New Product</h2>
+
+@using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.cat_id_fk, "Category")
+        @Html.DropDownListFor(model => model.cat_id_fk, ViewBag.categoryList as SelectList, "Select category", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.pro_name, "Product Name")
+        @Html.TextBoxFor(model => model.pro_name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.pro_price, "Price")
+        @Html.TextBoxFor(model => model.pro_price, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.pro_desc, "Description")
+        @Html.TextAreaFor(model => model.pro_desc, new { @class = "form-control", rows = "4" })
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Image")
+        <input type="file" name="imgfile" />
+    </div>
+    <button type="submit" class="btn btn-danger" style="font-weight: bold;">Submit</button>
+}

@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout1.cshtml"; // Assuming you have a shared layout file
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="contact-form">
+                <h2><strong>Get Contact</strong></h2>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<head>
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        h2 {
+            text-align: center;
+            color: #000000; /* Change to black */
+        }
+
+        .contact-section {
+            padding: 80px 0;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff; /* Change background color to white */
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .contact-form .form-group {
+                margin-bottom: 20px;
+            }
+
+            .contact-form label {
+                font-weight: bold;
+                color: #000000; /* Change to black */
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"] {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                color: #000000; /* Change to black */
+            }
+
+            .contact-form textarea {
+                resize: vertical;
+                color: #000000; /* Change to black */
+            }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 30px;
+            color: #000000; /* Change to black */
+        }
+
+            .contact-info p {
+                margin: 0;
+                padding: 5px;
+            }
+
+            .contact-info i {
+                font-size: 18px;
+                margin-right: 5px;
+            }
+
+        .contact-image {
+            width: 100%;
+            margin-top: 30px;
+            float: right;
+        }
+    </style>
+</head>

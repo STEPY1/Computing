@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewBag.Title</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="~/Content/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        .featured-product-img {
+            height: 200px; /* Điều chỉnh độ cao của hình ảnh */
+            object-fit: cover; /* Đảm bảo hình ảnh không bị méo khi điều chỉnh kích thước */
+        }
+
+        .product-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px; /* Thêm margin dưới để tạo khoảng cách giữa các sản phẩm */
+            text-align: center;
+        }
+
+        h1 {
+            padding: 20px;
+        }
+
+        /* Customize navbar background and text color */
+        .navbar {
+            background-color: #000000; /* Đổi background color thành đen */
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ffffff !important; /* Đổi text color thành trắng */
+        }
+
+        /* Đổi màu chữ cho các mục dropdown */
+        .dropdown-item {
+            color: #000000 !important; /* Màu đen */
+        }
+
+            /* Đổi màu chữ khi hover vào các mục dropdown */
+            .dropdown-item:hover {
+                background-color: #ffffff; /* Màu trắng */
+                color: #000000 !important; /* Màu đen */
+            }
+
+        /* Đổi màu chữ và viền chia cách giữa các mục dropdown */
+        .dropdown-divider {
+            background-color: #000000; /* Màu đen */
+        }
+
+        /* Customize search and cart buttons */
+        .navbar-form .form-control {
+            background-color: #ffffff; /* Change search input background color */
+            color: #333333; /* Change search input text color */
+        }
+
+        .navbar-form .btn {
+            background-color: #ffffff; /* Change button background color */
+            color: #3482A3; /* Change button text color */
+            border-color: #ffffff; /* Change button border color */
+        }
+
+        /* Đổi màu chữ cho tiêu đề "Explore Convenience" */
+        h2 {
+            color: #ff5733; /* Đổi thành màu cam */
+        }
+
+        /* Đổi màu nền cho phần nội dung "Explore Convenience" */
+        .about-content {
+            background-color: #f4f4f4; /* Đổi thành màu xám nhạt */
+        }
+
+        /* Đổi màu chữ cho nút "View Products" */
+        .btn-primary {
+            color: #ffffff !important; /* Đổi thành màu trắng */
+            background-color: #8e44ad !important; /* Đổi thành màu tím */
+            border-color: #8e44ad !important; /* Đổi màu viền thành màu tím */
+        }
+
+        /* Đổi màu nền cho footer */
+        footer {
+            background-color: #34495e; /* Đổi thành màu xanh da trời */
+        }
+
+            /* Đổi màu chữ cho footer */
+            footer p {
+                color: #ffffff; /* Đổi thành màu trắng */
+            }
+    </style>
+
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "User")">Apple Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("DisplayAdd", "User")">Product</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="@Url.Action("DisplayAdd", "User", new { id = 1 })">Macbook</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("DisplayAdd", "User", new { id = 7 })">Nokia</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("DisplayAdd", "User", new { id = 3 })">Airpods</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex" action="@Url.Action("checkout", "User")" method="GET">
+                    <button class="btn btn-outline-light me-lg-3" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        @if (TempData["cartCount"] != null)
+                        {
+                            <span class="badge bg-light text-dark ms-1 rounded-pill">@TempData["cartCount"]</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+                        }
+                    </button>
+                </form>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+                    <li class="nav-item me-2">
+                        @if (Session["user"] != null)
+                        {
+                            <span class="nav-link text-light">@Session["user"].ToString()</span>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light" href="@Url.Action("SignOut", "User")">Sign Out</a>
+                    </li>
+                </ul>
+                <form class="d-flex ms-lg-5 me-lg-3" action="@Url.Action("DisplayAdd", "User")" method="GET">
+                    @if (!string.IsNullOrEmpty(Request.QueryString["search"]))
+                    {
+                        <input type="hidden" name="id" value="@ViewBag.CategoryId" />
+                        <input type="hidden" name="page" value="1" />
+                    }
+                    <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search" name="search" id="search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Content -->
+    <div class="container">
+
+
+
+        @RenderBody()
+        <!-- Đoạn mã HTML cho nội dung của trang layout1 -->
+        @if (ViewBag.FeaturedProducts != null)
+        {
+            <div class="row my-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 d-flex align-items-center justify-content-center" style="background-image: url('Content/upload/cuahangtopzone.jpg'); background-size: cover; background-position: center; border-radius: 10px;">
+                            <div class="about-content text-center" style="background-color: rgba(255, 255, 255, 0.6); padding: 10px; border-radius: 10px;">
+                                <h2 class="mb-2" style="font-family: Montserrat, sans-serif; color: #333;">Explore Convenience</h2>
+                                <p class="mb-4" style="color: #666;">
+                                    Enjoy a great shopping experience with top technology products from our store. We provide quality products at attractive prices, ensuring customer satisfaction.
+                                </p>
+                                <a href="@Url.Action("DisplayAdd", "User")" class="btn btn-primary" style="background-color: #3482A3; border-color: #3482A3;">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="~/Content/upload/dien-thoai-vertu-signature-s-vertu-signature-gold-dragon-like-new.jpg" class="card-img-top" alt="iPhone" style="height: 200px; object-fit: cover; transition: transform 0.3s;" />
+                                <div class="card-body">
+                                    <h5 class="card-title">Nokia</h5>
+                                    <p class="card-text">One of the top smartphones in the market.</p>
+                                    <a href="@Url.Action("DisplayAdd", "User", new { id = 7 })" class="btn btn-primary" style="background-color: #3482A3; border-color: #3482A3;">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Thêm các cột cho các sản phẩm còn lại tương tự -->
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="~/Content/upload/macbook-pro-13-2017.jpg" class="card-img-top" alt="Laptop" style="height: 200px; object-fit: cover; transition: transform 0.3s;" />
+                                <div class="card-body">
+                                    <h5 class="card-title">Laptop</h5>
+                                    <p class="card-text">High-performance and beautifully designed laptop.</p>
+                                    <a href="@Url.Action("DisplayAdd", "User", new { id = 1 })" class="btn btn-primary" style="background-color: #3482A3; border-color: #3482A3;">View Details</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="~/Content/upload/dien-thoai-samsung-ke-di-dau-xu-huong-2-800x450-1.jpg" class="card-img-top" alt="Marshall Headphones" style="height: 200px; object-fit: cover; transition: transform 0.3s;" />
+                                <div class="card-body">
+                                    <h5 class="card-title">SamSung</h5>
+                                    <p class="card-text">Marshall Major IV over-ear headphones with high-quality sound.</p>
+                                    <a href="@Url.Action("DisplayAdd", "User", new { id = 6 })" class="btn btn-primary" style="background-color: #3482A3; border-color: #3482A3;">View Details</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="card h-100">
+                                <img src="~/Content/upload/AirPods.jpg" class="card-img-top" alt="AirPods" style="height: 200px; object-fit: cover; transition: transform 0.3s;" />
+                                <div class="card-body">
+                                    <h5 class="card-title">AirPods</h5>
+                                    <p class="card-text">Apple's wireless AirPods.</p>
+                                    <a href="@Url.Action("DisplayAdd", "User", new { id = 3 })" class="btn btn-primary" style="background-color: #3482A3; border-color: #3482A3;">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        }
+
+
+    
+    </div>
+
+
+
+
+    <!-- Footer-->
+    <footer class="border-top py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><i class="fas fa-envelope" style="color: black;"></i> info@applestore.com</p>
+                </div>
+                <div class="col-md-4">
+                    <p><i class="fas fa-map-marker-alt" style="color: black;"></i> 1 Infinite Loop, Cupertino, CA 95014</p>
+                </div>
+                <div class="col-md-4">
+                    <p><i class="fas fa-phone" style="color: black;"></i> 1-800-MY-APPLE</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="m-0">Copyright &copy; Apple Inc. 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Content/js/scripts.js"></script>
+
+
+    <!-- Scripts section -->
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

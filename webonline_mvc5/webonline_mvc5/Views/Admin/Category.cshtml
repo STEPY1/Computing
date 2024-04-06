@@ -1,0 +1,34 @@
+﻿@model webonline_mvc5.Models.category
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body>
+
+    @using (Html.BeginForm("Category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "mt-4" }))
+    {
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-61">
+                        <h4 class="form-head">Add Category</h4>
+                        <div class="form-group">
+                            <label class="text-head" for="cat_name">Category Name</label>
+                            @Html.TextBoxFor(x => x.cat_name, new { @class = "form-control", @placeholder = "Category Name" })
+                            <span style="color:red">@Html.ValidationMessageFor(x => x.cat_name)</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-head" for="imgfile">Image</label>
+                            <input type="file" name="imgfile" class="form-control-file" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add Category</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</body>
+

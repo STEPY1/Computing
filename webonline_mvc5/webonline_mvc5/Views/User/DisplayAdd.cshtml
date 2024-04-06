@@ -1,0 +1,96 @@
+﻿@model PagedList.IPagedList<webonline_mvc5.Models.product>
+@using System.Web.Mvc.Html
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "DisplayAdd";
+   
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisplayAdd</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+            .product-item img {
+                max-width: 100%;
+                height: 200px; /* Fixed height for uniformity */
+                object-fit: cover; /* Maintain aspect ratio */
+                margin-bottom: 15px;
+            }
+
+            .product-item h4 {
+                margin-top: 0;
+                font-size: 20px;
+            }
+
+            .product-item p {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+        .add-to-cart-btn {
+            background-color: #fff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+            .add-to-cart-btn:hover {
+                background-color: #ccc;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center"><strong>PRODUCT</strong></h1>
+
+        <div class="row">
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card product-item">
+                            <img src="@Url.Content(item.pro_image)" alt="Product Image" class="card-img-top" />
+                            <div class="card-body">
+                                <h4 class="card-title">@Html.ActionLink(item.pro_name, "ViewAdds", "User", new { id = item.pro_id }, null)</h4>
+                                <p class="card-text">Price: @item.pro_price</p>
+                                <button class="btn  add-to-cart-btn">@Html.ActionLink("Add to Cart", "Ad_tocart", new { id = item.pro_id })</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-lg-12">
+                    <p>No products available.</p>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12">
+                @Html.PagedListPager(Model, page => Url.Action("DisplayAdd", new { page }))
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

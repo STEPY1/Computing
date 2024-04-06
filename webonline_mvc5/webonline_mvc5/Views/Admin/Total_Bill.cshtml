@@ -1,0 +1,53 @@
+﻿@model IEnumerable<webonline_mvc5.Models.order_table>
+@{
+    ViewBag.Title = "Total_Bill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        color: #3482A3;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-danger">Total Bill</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Order Quantity</th>
+                <th>Order Unit Price</th>
+                <th>Total Bill</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.o_id</td>
+                        <td>@item.o_date</td>
+                        <td>@item.o_qty</td>
+                        <td>@item.o_unitprice</td>
+                        <td>@item.o_bill</td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteOrder", new { id = item.o_id }, new { onclick = "return confirm('Are you sure you want to delete this order?');", @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">No orders found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

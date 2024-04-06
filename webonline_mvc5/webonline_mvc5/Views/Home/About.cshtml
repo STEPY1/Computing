@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";  // Assuming a shared layout is used
+}
+
+<section class="about-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-content">
+                    <h2><strong>Our Story</strong></h2>
+                    <p>At our store, we believe in providing more than just products; we aim to create meaningful experiences for our customers. Our journey began with a passion for technology and a commitment to delivering the best products and services.</p>
+                    <a href="/products" class="btn btn-primary">Explore Products</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-image">
+                    <img src="~/Content/upload/how-much-website-cost_0.jpg" alt="About" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="know-us-better">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-info">
+                    <h2>Our Values</h2>
+                    <p>At our store, we prioritize integrity, innovation, and customer satisfaction. Our commitment to these values drives everything we do, from product selection to customer service.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-info">
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Success Stories</h3>
+                        <p>Discover how our products have made a difference in the lives of our customers and communities.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Engagement</h3>
+                        <p>Learn about our initiatives to give back to the community and engage with our customers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-feature-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Fast Shipping</h3>
+                    <p>Enjoy fast and reliable shipping on all orders.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available around the clock to assist you.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <i class="fas fa-gift"></i>
+                    <h3>Exclusive Offers</h3>
+                    <p>Discover exclusive offers and promotions available only to our customers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+    .about-page {
+        padding: 80px 0;
+    }
+
+    .about-content {
+        margin-bottom: 40px;
+    }
+
+        .about-content h2 {
+            color: #333333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: #777777;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+    .about-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-feature-section {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+    }
+
+    .feature-box {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .feature-box i {
+            font-size: 48px;
+            color: #3482A3;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            color: #333333;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: #777777;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+    .know-us-better {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+    }
+
+    .about-info h2 {
+        color: #333333;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .about-info p {
+        color: #777777;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .feature-info .feature-item {
+        margin-bottom: 30px;
+    }
+
+        .feature-info .feature-item i {
+            font-size: 48px;
+            color: #3482A3;
+            margin-bottom: 20px;
+        }
+
+        .feature-info .feature-item h3 {
+            color: #333333;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-info .feature-item p {
+            color: #777777;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+    .btn-primary {
+        background-color: #3482A3;
+        color: #ffffff;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #296482;
+        }
+</style>

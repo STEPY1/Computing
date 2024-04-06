@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header text-center" style="background-color: #2c3e50; color: #fff; padding: 20px; margin-bottom: 20px; ">
+    <h1 style="margin: 0; font-weight: bold;">Admin Management</h1>
+</div>
+
+<div class="content" style="background-color: #ecf0f1; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+    <ul class="admin-links" style="list-style: none; padding: 0; margin-bottom: 20px;">
+        <li style="margin-bottom: 20px;">
+            <a href="@Url.Action("ViewCategory", "Admin")" style="text-decoration: none; color: #3498db; font-weight: bold; padding: 10px 20px; border: 2px solid #3498db; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;"><i class="far fa-sitemap"></i> Manage Categories</a>
+        </li>
+        <li style="margin-bottom: 20px;">
+            <a href="@Url.Action("ViewProducts", "Admin")" style="text-decoration: none; color: #2ecc71; font-weight: bold; padding: 10px 20px; border: 2px solid #2ecc71; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;"><i class="far fa-box"></i> Manage Products</a>
+        </li>
+        <li style="margin-bottom: 20px;">
+            <a href="@Url.Action("Total_Bill", "Admin")" style="text-decoration: none; color: #e67e22; font-weight: bold; padding: 10px 20px; border: 2px solid #e67e22; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;"><i class="far fa-box"></i> Manage Orders</a>
+        </li>
+        <li style="margin-bottom: 20px;">
+            <a href="@Url.Action("ListUsers", "Admin")" style="text-decoration: none; color: #9b59b6; font-weight: bold; padding: 10px 20px; border: 2px solid #9b59b6; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease;"><i class="far fa-box"></i> Manage Users</a>
+        </li>
+    </ul>
+    
+</div>
+
+<script>
+    var slides = document.querySelectorAll('.slide');
+    var currentSlide = 0;
+    var slideInterval = setInterval(nextSlide, 3000);
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function prevSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+</script>
